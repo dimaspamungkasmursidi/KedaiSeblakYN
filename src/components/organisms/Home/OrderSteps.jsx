@@ -56,7 +56,7 @@ const OrderSteps = () => {
                 className="relative flex items-start p-2 bg-black/10 backdrop-blur-xl rounded-xl shadow-lg"
                 initial={{ opacity: 0, y: 50 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ duration: 0.5, delay: index * 0.3 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
               >
                 <div className="flex-shrink-0 w-10 h-10 bg-tertiary rounded-full flex items-center justify-center text-white font-bold">
                   {step.id}

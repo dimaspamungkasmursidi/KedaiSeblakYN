@@ -106,7 +106,7 @@ const Navbar = () => {
         className="md:hidden bg-black/15 overflow-hidden flex flex-col"
       >
         <div>
-          <BsCart2 className="w-8 h-8 mt-8 mr-7 float-right" />
+          <BsCart2 className="w-7 h-7 mt-8 mr-7 float-right" />
         </div>
         <ul className="flex flex-col items-center justify-center pt-4 pb-6 spacing-y-4">
           <li className="my-2 text-lg font-londrina tracking-widest transition duration-300 ease-in-out hover:text-tertiary">

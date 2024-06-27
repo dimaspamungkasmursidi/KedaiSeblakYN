@@ -12,13 +12,13 @@ const services = [
     id: 1,
     icon: <CiDeliveryTruck className="w-20 h-20" />,
     title: "Delivery Order",
-    description: "Layanan antar pesanan kerumah (Cash on Delivery)",
+    description: "Layanan antar pesanan kerumah (Cash On Delivery)",
   },
   {
     id: 2,
     icon: <IoFlashOutline className="w-20 h-20" />,
     title: "Seblak Instant",
-    description: "Layanan antar pesanan kerumah tanpa antri (Cash on Delivery)",
+    description: "Layanan antar pesanan kerumah tanpa antri (Cash On Delivery)",
   },
   {
     id: 3,
