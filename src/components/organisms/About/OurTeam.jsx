@@ -26,11 +26,11 @@ const menuCategories = [
   {
     category: "Minuman",
     items: [
-      { name: "Es Teh Manis", description: "Es teh manis yang segar dan menyegarkan", price: "Rp 5.000" },
-      { name: "Jus Alpukat", description: "Jus alpukat dengan tambahan susu kental manis", price: "Rp 12.000" },
-      { name: "Jus Mangga", description: "Jus mangga segar dengan rasa manis", price: "Rp 10.000" },
-      { name: "Kopi Susu", description: "Kopi susu dengan perpaduan yang sempurna", price: "Rp 7.000" },
-      { name: "Es Kelapa Muda", description: "Es kelapa muda yang segar dan alami", price: "Rp 15.000" },
+      { name: "Teh", description: "Dingin/Hangat", price: "Rp 3.000" },
+      { name: "Jeruk", description: "Dingin/Hangat", price: "Rp 4.000" },
+      { name: "Nutrisari", description: "Dingin/Hangat", price: "Rp 4.000" },
+      { name: "Hilo", description: "Dingin/Hangat", price: "Rp 4.000" },
+      { name: "Good Day", description: "Dingin/Hangat", price: "Rp 5.000" },
     ],
   },
   {
@@ -112,7 +112,7 @@ const OurTeam = () => {
                   {category.items.map((item, i) => (
                     <li key={i} className="flex flex-col">
                       <span className="text-lg font-semibold">{item.name}</span>
-                      <span className="text-sm">{item.description}</span>
+                      <span className="text-sm mb-1">{item.description}</span>
                       <span className="text-lg font-bold">{item.price}</span>
                       <span className="border-b border-tertiary"></span>
                     </li>

@@ -7,3 +7,11 @@ body {
   @apply text-white;
   @apply font-montserrat;
 }
+
+.categories-filter {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.categories-filter::-webkit-scrollbar {
+  display: none;
+}
