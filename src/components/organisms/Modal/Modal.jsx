@@ -68,11 +68,13 @@ const Modal = ({ show, onClose, menu }) => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex justify-between items-center">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded">
-            Pesan
+        <div className="flex justify-around items-center mt-8">
+          <button className="bg-red-500 px-4 py-2 rounded">
+            Order Now
           </button>
-          <BsCart2 className="w-8 h-8 text-gray-700" />
+          <button className="flex gap-2 bg-red-500 text-white px-4 py-2 rounded">
+            Masukan Keranjang <span><BsCart2 className="w-6 h-6" /></span>
+          </button>
         </div>
       </motion.div>
     </motion.div>

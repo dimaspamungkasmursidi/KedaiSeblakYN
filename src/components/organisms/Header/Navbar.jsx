@@ -11,10 +11,10 @@ const Navbar = () => {
   };
 
   return (
-    <section>
+    <section className="sticky top-0 z-50 backdrop-blur-xl">
       <nav className="flex justify-between items-center py-4 px-6 bg-black/10 shadow-[0px_4.0px_20px_rgba(0,0,0,0.38)]">
         {/* LOGO */}
-        <div>
+        <div className="hidden md:block">
           <Link to="/">
             <figure>
               <img
@@ -93,7 +93,7 @@ const Navbar = () => {
         </section>
 
         {/* CART */}
-        <div className="hidden md:block">
+        <div className="">
           <BsCart2 className="w-8 h-8" />
         </div>
       </nav>
@@ -105,10 +105,10 @@ const Navbar = () => {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="md:hidden bg-black/15 overflow-hidden flex flex-col"
       >
-        <div>
+        {/* <div>
           <BsCart2 className="w-7 h-7 mt-8 mr-7 float-right" />
-        </div>
-        <ul className="flex flex-col items-center justify-center pt-4 pb-6 spacing-y-4">
+        </div> */}
+        <ul className="flex flex-col items-center justify-center py-6 spacing-y-4">
           <li className="my-2 text-lg font-londrina tracking-widest transition duration-300 ease-in-out hover:text-tertiary">
             <Link to="/">Beranda</Link>
           </li>
