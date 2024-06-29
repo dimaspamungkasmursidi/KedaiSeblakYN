@@ -7,7 +7,7 @@ import { menuList } from "../../../utils/MenuList";
 
 const categories = ["Semua", "Seblak", "Selain Seblak", "Minuman"];
 
-const Menu = () => {
+const Menu = ({ addToCart, onCardClick }) => {
   const [selectedCategory, setSelectedCategory] = useState("Semua");
   const [searchTerm, setSearchTerm] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -25,6 +25,7 @@ const Menu = () => {
   const handleCardClick = (menu) => {
     setSelectedMenu(menu);
     setShowModal(true);
+    onCardClick(menu);
   };
 
   const closeModal = () => {
@@ -88,7 +89,12 @@ const Menu = () => {
       {/* MODAL */}
       <AnimatePresence>
         {showModal && selectedMenu && (
-          <Modal show={showModal} onClose={closeModal} menu={selectedMenu} />
+          <Modal
+            show={showModal}
+            onClose={closeModal}
+            menu={selectedMenu}
+            addToCart={addToCart}
+          />
         )}
       </AnimatePresence>
     </section>

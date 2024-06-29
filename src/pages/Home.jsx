@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../components/organisms/Header/Navbar";
+// import Navbar from "../components/organisms/Header/Navbar";
 import Hero from "../components/organisms/Home/Hero";
 import WhatsappButton from "../components/atoms/Buttons/WhatsappButton";
 import PopularProduct from "../components/organisms/Home/PopularProduct";
@@ -10,7 +10,7 @@ import Footer from "../components/organisms/Footer/Footer";
 const Home = () => {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Hero />
       <PopularProduct />
       <OrderSteps />

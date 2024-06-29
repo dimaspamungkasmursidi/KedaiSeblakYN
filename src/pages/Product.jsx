@@ -1,14 +1,22 @@
-import React from "react";
-import Navbar from "../components/organisms/Header/Navbar";
-import WhatsappButton from "../components/atoms/Buttons/WhatsappButton";
+import React, { useState } from "react";
 import Menu from "../components/organisms/Products/Menu";
 import Footer from "../components/organisms/Footer/Footer";
+import WhatsappButton from "../components/atoms/Buttons/WhatsappButton";
 
-const Product = () => {
+const Product = ({ addToCart }) => {
+  const [selectedMenu, setSelectedMenu] = useState(null);
+
+  const handleCardClick = (menu) => {
+    setSelectedMenu(menu);
+  };
+
+  const closeModal = () => {
+    setSelectedMenu(null);
+  };
+
   return (
     <section>
-      <Navbar />
-      <Menu />
+      <Menu addToCart={addToCart} onCardClick={handleCardClick} />
       <Footer />
       <WhatsappButton />
     </section>

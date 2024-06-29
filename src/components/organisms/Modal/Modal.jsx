@@ -1,10 +1,9 @@
-// src/components/Modal/Modal.jsx
 import React, { useState } from "react";
 import { BsCart2 } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
 
-const Modal = ({ show, onClose, menu }) => {
+const Modal = ({ show, onClose, menu, addToCart }) => {
   const modalVariants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: { opacity: 1, scale: 1 },
@@ -12,6 +11,11 @@ const Modal = ({ show, onClose, menu }) => {
   };
 
   const [spicinessLevel, setSpicinessLevel] = useState(1);
+
+  const handleAddToCart = () => {
+    addToCart({ ...menu, spicinessLevel });
+    onClose(); // Close modal after adding to cart
+  };
 
   if (!show) {
     return null;
@@ -72,8 +76,11 @@ const Modal = ({ show, onClose, menu }) => {
           <button className="bg-red-500 px-4 py-2 rounded">
             Order Now
           </button>
-          <button className="flex gap-2 bg-red-500 text-white px-4 py-2 rounded">
-            Masukan Keranjang <span><BsCart2 className="w-6 h-6" /></span>
+          <button
+            onClick={handleAddToCart}
+            className="flex gap-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+          >
+            <BsCart2 size={20} /> Masukan Keranjang
           </button>
         </div>
       </motion.div>

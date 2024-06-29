@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { BsCart2 } from "react-icons/bs";
+import CartModal from "../Modal/CartModal";
 
-const Navbar = () => {
+const Navbar = ({ cartItems = [], removeFromCart, toggleCartModal }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <section className="sticky top-0 z-50 backdrop-blur-xl">
@@ -93,8 +96,13 @@ const Navbar = () => {
         </section>
 
         {/* CART */}
-        <div className="">
+        <div onClick={toggleCartModal} className="relative cursor-pointer">
           <BsCart2 className="w-8 h-8" />
+          {totalItems > 0 && (
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">
+              {totalItems}
+            </span>
+          )}
         </div>
       </nav>
 
@@ -105,9 +113,6 @@ const Navbar = () => {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="md:hidden bg-black/15 overflow-hidden flex flex-col"
       >
-        {/* <div>
-          <BsCart2 className="w-7 h-7 mt-8 mr-7 float-right" />
-        </div> */}
         <ul className="flex flex-col items-center justify-center py-6 spacing-y-4">
           <li className="my-2 text-lg font-londrina tracking-widest transition duration-300 ease-in-out hover:text-tertiary">
             <Link to="/">Beranda</Link>
