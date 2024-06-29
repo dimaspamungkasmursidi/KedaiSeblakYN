@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import CardButton from "../../atoms/Buttons/CardButton";
 
-const Card = ({ children }) => {
+const Card = ({ children, onClick }) => {
 
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -13,6 +13,7 @@ const Card = ({ children }) => {
   return (
     <>
         <motion.div
+          onClick={onClick}
           ref={ref}
           className="relative flex flex-col justify-between w-38 bg-black/10 backdrop-blur-xl rounded-xl border"
           initial={{ opacity: 0, y: 50 }}

@@ -1,5 +1,4 @@
-// menuData.js
-
+// src/utils/menuList.js
 export const menuList = [
     {
       id: 1,
@@ -47,14 +46,6 @@ export const menuList = [
       title: "Jus Alpukat",
       desc: "Jus alpukat dengan tambahan susu kental manis.",
       price: "Rp. 12.000",
-      category: "Minuman",
-    },
-    {
-      id: 7,
-      image: "/images/seblak.png",
-      title: "Kopi Susu",
-      desc: "Kopi susu dengan perpaduan yang sempurna.",
-      price: "Rp. 7.000",
       category: "Minuman",
     },
   ];

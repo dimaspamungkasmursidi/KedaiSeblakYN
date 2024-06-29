@@ -6,7 +6,7 @@ import Button from "../../atoms/Buttons/Button";
 const Hero = () => {
   return (
     <>
-      <section className="py-12 px-8 mb-4 md:mb-0 flex flex-col justify-center items-center gap-6 md:flex-row-reverse md:gap-x-40">
+      <section className="py-12 px-8 mb-4 md:mb-0 flex flex-col justify-center items-center gap-6 lg:flex-row-reverse md:gap-x-40">
         <figure>
           <img
             src="/images/seblak.png"
