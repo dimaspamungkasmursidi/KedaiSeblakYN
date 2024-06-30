@@ -6,6 +6,7 @@ const Button = (props) => {
   const {
     children,
     color = "bg-secondary text-primary hover:bg-tertiary hover:text-secondary",
+    size = "px-6 py-2",
     onClick = () => {},
     type = "submit",
   } = props;
@@ -23,7 +24,7 @@ const Button = (props) => {
       transition={{ duration: 0.8 }}
       type={type}
       onClick={onClick}
-      className={`flex items-center justify-between font-montserrat font-semibold px-6 py-2 transition-all rounded-md ${color} shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] transition duration-300 ease-in-out`}
+      className={`flex items-center justify-between ${size} font-montserrat font-semibold transition-all rounded-md ${color} shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] transition duration-300 ease-in-out`}
     >
       {children}
     </motion.button>

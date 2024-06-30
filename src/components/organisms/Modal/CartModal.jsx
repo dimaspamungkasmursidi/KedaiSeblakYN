@@ -1,8 +1,15 @@
 import React, { useEffect } from "react";
 import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
+import Button from "../../atoms/Buttons/Button";
 
-const CartModal = ({ cartItems, setCartItems, show, onClose, removeFromCart }) => {
+const CartModal = ({
+  cartItems,
+  setCartItems,
+  show,
+  onClose,
+  removeFromCart,
+}) => {
   const modalVariants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: { opacity: 1, scale: 1 },
@@ -12,22 +19,35 @@ const CartModal = ({ cartItems, setCartItems, show, onClose, removeFromCart }) =
   // Function to calculate total price
   const calculateTotalPrice = () => {
     const totalPrice = cartItems.reduce((total, item) => {
-      // Convert price string to numeric value with regex
-      const numericPrice = parseFloat(item.price.replace(/[^0-9,-]+/g, "").replace(",", "."));
-      return total + numericPrice * item.quantity;
+      let additionalPrice = 0;
+      if (item.spicinessLevel === 4) {
+        additionalPrice = 1000;
+      } else if (item.spicinessLevel === 5) {
+        additionalPrice = 2000;
+      }
+      const numericPrice = parseFloat(
+        item.price.replace(/[^0-9,-]+/g, "").replace(",", ".")
+      );
+      return total + (numericPrice + additionalPrice) * item.quantity;
     }, 0);
 
-    // Format total price as Indonesian Rupiah
-    return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(totalPrice);
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(totalPrice);
   };
 
   // Function to generate WhatsApp message content
   const generateWhatsAppMessage = () => {
     let message = "Pesanan saya:\n";
     cartItems.forEach((item, index) => {
-      message += `${index + 1}. ${item.title} (Level: ${item.spicinessLevel}) - Jumlah: ${item.quantity}\n`;
+      let levelText =
+        item.category === "Minuman" ? "" : ` (Level ${item.spicinessLevel})`;
+      message += `${index + 1}. ${item.title}${levelText} - Jumlah: ${
+        item.quantity
+      }\n`;
     });
-    message += `\nTotal Barang: ${calculateTotalItems()}\nTotal Harga: ${calculateTotalPrice()}`;
+    message += `\nTotal Produk: ${calculateTotalItems()}\nTotal Harga: ${calculateTotalPrice()}\n\nAlamat:\nNote: Kirimkan juga Sharelok nya`;
     return message;
   };
 
@@ -37,10 +57,11 @@ const CartModal = ({ cartItems, setCartItems, show, onClose, removeFromCart }) =
   };
 
   // Function to handle Order Now button click
-  const handleOrderNow = () => {
-    const phoneNumber = "6288297894942";
+  const handleOrderNow = (phoneNumber) => {
     const message = generateWhatsAppMessage();
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
     window.open(whatsappURL, "_blank");
   };
 
@@ -56,7 +77,7 @@ const CartModal = ({ cartItems, setCartItems, show, onClose, removeFromCart }) =
   return (
     <motion.div
       onClick={onClose}
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2"
+      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-2"
     >
       <motion.div
         onClick={(e) => e.stopPropagation()}
@@ -65,7 +86,7 @@ const CartModal = ({ cartItems, setCartItems, show, onClose, removeFromCart }) =
         animate="visible"
         variants={modalVariants}
         transition={{ duration: 0.3 }}
-        className="bg-white/20 backdrop-blur-md rounded-lg p-6 w-full max-w-md"
+        className="bg-white/20 backdrop-blur-lg rounded-lg p-5 w-full max-w-md border"
       >
         {/* Close Button */}
         <button
@@ -76,39 +97,62 @@ const CartModal = ({ cartItems, setCartItems, show, onClose, removeFromCart }) =
         </button>
 
         {/* Modal Content */}
-        <h2 className="text-2xl font-bold mb-4">Keranjang Belanja</h2>
+        <h2 className="text-2xl font-bold mb-4">Keranjang Menu</h2>
         {cartItems.length === 0 ? (
-          <p className="text-lg">Keranjang belanja kosong.</p>
+          <p className="text-lg">Keranjang Menu kamu masih kosong.</p>
         ) : (
-          cartItems.map((item, index) => (
-            <div key={index} className="mb-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-lg font-semibold">{item.title}</h3>
-                  <p>{item.price}</p>
-                  <p>Tingkat Kepedasan: {item.spicinessLevel}</p>
-                  <p>Jumlah: {item.quantity}</p>
+          <div
+            className={`border p-2 ${
+              cartItems.length > 3
+                ? "max-h-80 overflow-y-auto custom-scrollbar"
+                : ""
+            }`}
+          >
+            {cartItems.map((item, index) => (
+              <div key={index} className="mb-4 bg-black/20 p-2 rounded-md">
+                <div className="flex items-center justify-between pr-2">
+                  <div>
+                    <h3 className="text-lg font-semibold">{item.title}</h3>
+                    <p>Level - {item.spicinessLevel}</p>
+                    <p>{item.price}</p>
+                    <p>Jumlah: {item.quantity}</p>
+                  </div>
+                  <button
+                    onClick={() => removeFromCart(item.id, item.spicinessLevel)}
+                    className="border py-1 px-2 rounded text-sm text-red-500 hover:text-red-700"
+                  >
+                    Hapus
+                  </button>
                 </div>
-                <button
-                  onClick={() => removeFromCart(item.id, item.spicinessLevel)}
-                  className="text-red-500 hover:text-red-700"
-                >
-                  Hapus
-                </button>
               </div>
-            </div>
-          ))
+            ))}
+          </div>
         )}
         {cartItems.length > 0 && (
           <div className="mt-4">
-            <h3 className="text-lg font-bold">Total Harga: {calculateTotalPrice()}</h3>
-            <h3 className="text-lg font-bold">Total Barang: {calculateTotalItems()}</h3>
-            <button
-              onClick={handleOrderNow}
-              className="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
-            >
-              Order Now
-            </button>
+            <p className="text-sm mb-2">Level 4 + Rp.1000 & Level 5 + Rp.2000</p>
+            <div className="mb-2">
+              <h3 className="text-lg font-bold">
+                Total Barang: {calculateTotalItems()}
+              </h3>
+              <h3 className="text-lg font-bold">
+                Total Harga: {calculateTotalPrice()}
+              </h3>
+            </div>
+            <div className="flex justify-start gap-2">
+              <Button
+                onClick={() => handleOrderNow("6288297894942")}
+              >
+                Order Sekarang
+              </Button>
+
+              <Button
+                onClick={() => handleOrderNow("6285755035870")}
+                color="bg-red-500 text-white hover:bg-secondary hover:text-red-600"
+              >
+                Order Instant
+              </Button>
+            </div>
           </div>
         )}
       </motion.div>

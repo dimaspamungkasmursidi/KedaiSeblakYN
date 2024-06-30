@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import Title from "../../atoms/Text/Title";
 import Button from "../../atoms/Buttons/Button";
 import CardButton from "../../atoms/Buttons/CardButton";
+import PopularMenuModal from "../Modal/PopularMenuModal"; // Import the modal component
 
 const PopularMenu = [
   {
@@ -38,6 +39,16 @@ const PopularMenu = [
 ];
 
 const PopularProduct = () => {
+  const [selectedMenu, setSelectedMenu] = useState(null);
+
+  const openModal = (menu) => {
+    setSelectedMenu(menu);
+  };
+
+  const closeModal = () => {
+    setSelectedMenu(null);
+  };
+
   return (
     <section className="pt-12 px-6">
       {/* TITLE */}
@@ -83,7 +94,7 @@ const PopularProduct = () => {
                   <p className="font-montserrat font-bold">{menu.price}</p>
                 </div>
                 <div className="flex flex-col justify-center items-center px-2 pb-3">
-                  <CardButton>Detail</CardButton>
+                  <CardButton onClick={() => openModal(menu)}>Detail</CardButton>
                 </div>
               </div>
 
@@ -104,6 +115,15 @@ const PopularProduct = () => {
           </Button>
         </Link>
       </div>
+
+      {/* MODAL */}
+      {selectedMenu && (
+        <PopularMenuModal
+          show={!!selectedMenu}
+          onClose={closeModal}
+          menu={selectedMenu}
+        />
+      )}
     </section>
   );
 };

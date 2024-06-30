@@ -4,7 +4,7 @@ import Home from './pages/Home.jsx';
 import Product from './pages/Product.jsx';
 import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';
-import Test from './pages/Test.jsx';
+import MenuList from './pages/MenuList.jsx';
 import Navbar from './components/organisms/Header/Navbar.jsx';
 import CartModal from './components/organisms/Modal/CartModal.jsx';
 
@@ -64,9 +64,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<Product addToCart={addToCart} />} />
+        <Route path="/menulist" element={<MenuList />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/test" element={<Test />} />
       </Routes>
       <CartModal
         show={showCartModal}

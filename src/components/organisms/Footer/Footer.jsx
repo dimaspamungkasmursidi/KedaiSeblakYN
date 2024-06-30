@@ -65,6 +65,9 @@ const Footer = () => {
             <Link to="/product" className="text-sm hover:text-gray-400">
               Menu
             </Link>
+            <Link to="/menulist" className="text-sm hover:text-gray-400">
+              Daftar Menu
+            </Link>
             <Link to="/about" className="text-sm hover:text-gray-400">
               Tentang
             </Link>

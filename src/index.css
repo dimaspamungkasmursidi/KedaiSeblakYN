@@ -15,3 +15,49 @@ body {
 .categories-filter::-webkit-scrollbar {
   display: none;
 }
+
+
+/* Custom Scrollbar Styles */
+.custom-scrollbar {
+  overflow-y: scroll;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #DC2626; /* Change this to your desired color */
+  border-radius: 10px;
+  border: 3px solid #ffffff; /* Change this to match your background color */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Change this to your desired color */
+}
+
+/* Force scrollbar to be always visible */
+.custom-scrollbar {
+  -ms-overflow-style: scrollbar; /* for Internet Explorer */
+  scrollbar-width: thin; /* for Firefox */
+}
+
+
+
+/* .custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #DC2626;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+} */

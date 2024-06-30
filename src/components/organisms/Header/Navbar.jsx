@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { BsCart2 } from "react-icons/bs";
-import CartModal from "../Modal/CartModal";
 
 const Navbar = ({ cartItems = [], removeFromCart, toggleCartModal }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -103,6 +102,9 @@ const Navbar = ({ cartItems = [], removeFromCart, toggleCartModal }) => {
               <Link to="/product">Menu</Link>
             </li>
             <li className="text-lg transition duration-300 ease-in-out hover:text-tertiary">
+              <Link to="/menulist">Daftar Menu</Link>
+            </li>
+            <li className="text-lg transition duration-300 ease-in-out hover:text-tertiary">
               <Link to="/about">Tentang</Link>
             </li>
             <li className="text-lg transition duration-300 ease-in-out hover:text-tertiary">
@@ -135,6 +137,9 @@ const Navbar = ({ cartItems = [], removeFromCart, toggleCartModal }) => {
           </li>
           <li className="my-2 text-lg font-londrina tracking-widest transition duration-300 ease-in-out hover:text-tertiary">
             <Link to="/product">Menu</Link>
+          </li>
+          <li className="my-2 text-lg font-londrina tracking-widest transition duration-300 ease-in-out hover:text-tertiary">
+            <Link to="/menulist">Daftar Menu</Link>
           </li>
           <li className="my-2 text-lg font-londrina tracking-widest transition duration-300 ease-in-out hover:text-tertiary">
             <Link to="/about">Tentang</Link>
