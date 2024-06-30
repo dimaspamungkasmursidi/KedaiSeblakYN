@@ -24,7 +24,7 @@ const OurTeam = () => {
           animate={section1InView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.5 }}
         >
-          <figure className="relative lg:min-w-[600px] h-full border">
+          <figure className="relative lg:min-w-[600px] h-full">
             <img
               src="/images/team.png"
               alt="About Us Image"

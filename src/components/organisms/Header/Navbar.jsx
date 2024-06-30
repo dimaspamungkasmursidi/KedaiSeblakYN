@@ -81,13 +81,13 @@ const Navbar = ({ cartItems = [], removeFromCart, toggleCartModal }) => {
                   initial={{ rotate: 180 }}
                   animate={{ rotate: 360 }}
                   transition={{ duration: 0.3 }}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16m-7 6h7"
-                  />
+                ><path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h7"
+              />
+              
                 </motion.svg>
               )}
             </motion.button>

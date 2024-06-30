@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { menuCategories } from "../utils/menuCategories";
 import { useInView } from "react-intersection-observer";
 import Title from "../components/atoms/Text/Title";
+import Footer from "../components/organisms/Footer/Footer";
 
 const MenuList = () => {
   const { ref: section2Ref, inView: section2InView } = useInView({
@@ -11,7 +12,8 @@ const MenuList = () => {
   });
 
   return (
-    <section className="py-10 px-6">
+    <>
+    <section className="py-10 mb-6 px-6">
       <Title>Daftar Menu</Title>
       <motion.div
         ref={section2Ref}
@@ -46,6 +48,8 @@ const MenuList = () => {
         </div>
       </motion.div>
     </section>
+      <Footer/>
+    </>
   );
 };
 
