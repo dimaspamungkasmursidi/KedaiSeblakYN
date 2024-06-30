@@ -39,7 +39,7 @@ const CartModal = ({
 
   // Function to generate WhatsApp message content
   const generateWhatsAppMessage = () => {
-    let message = "Pesanan saya:\n";
+    let message = "Atas Nama:\nPesanan Saya:\n";
     cartItems.forEach((item, index) => {
       let levelText =
         item.category === "Minuman" ? "" : ` (Level ${item.spicinessLevel})`;
@@ -47,7 +47,7 @@ const CartModal = ({
         item.quantity
       }\n`;
     });
-    message += `\nTotal Produk: ${calculateTotalItems()}\nTotal Harga: ${calculateTotalPrice()}\n\nAlamat:\nNote: Kirimkan juga Sharelok nya`;
+    message += `\nTotal Produk: ${calculateTotalItems()}\nTotal Harga: ${calculateTotalPrice()}\n\nAlamat:\n*Note: Kirimkan juga Sharelok nya*`;
     return message;
   };
 
@@ -102,7 +102,7 @@ const CartModal = ({
           <p className="text-lg">Keranjang Menu kamu masih kosong.</p>
         ) : (
           <div
-            className={`border p-2 ${
+            className={`border rounded-md p-2 ${
               cartItems.length > 3
                 ? "max-h-80 overflow-y-auto custom-scrollbar"
                 : ""
@@ -130,7 +130,9 @@ const CartModal = ({
         )}
         {cartItems.length > 0 && (
           <div className="mt-4">
-            <p className="text-sm mb-2">Level 4 + Rp.1000 & Level 5 + Rp.2000</p>
+            <p className="text-sm mb-2">
+              Level 4 + Rp.1000 & Level 5 + Rp.2000
+            </p>
             <div className="mb-2">
               <h3 className="text-lg font-bold">
                 Total Barang: {calculateTotalItems()}
@@ -140,9 +142,7 @@ const CartModal = ({
               </h3>
             </div>
             <div className="flex justify-start gap-2">
-              <Button
-                onClick={() => handleOrderNow("6288297894942")}
-              >
+              <Button onClick={() => handleOrderNow("6288297894942")}>
                 Order Sekarang
               </Button>
 

@@ -15,7 +15,7 @@ const Footer = () => {
                 <img
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCOxvrdbUOP745_5x99XUXXYWgmFmRRKtepgeMFmhYuGkzftppBRKD9xBeHn8TYE8RfWU&usqp=CAU"
                   alt="Logo"
-                  className="w-20 md:w-28 h-20 md:h-28 rounded-lg"
+                  className="w-20 md:w-28 h-20 md:h-28 rounded-md"
                 />
               </figure>
             </Link>
@@ -66,7 +66,7 @@ const Footer = () => {
               Menu
             </Link>
             <Link to="/menulist" className="text-sm hover:text-gray-400">
-              Daftar Menu
+              Menu List
             </Link>
             <Link to="/about" className="text-sm hover:text-gray-400">
               Tentang

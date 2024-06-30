@@ -23,7 +23,7 @@ const Modal = ({ show, onClose, menu, addToCart }) => {
   };
 
   const generateWhatsAppMessage = () => {
-    const message = `Pesanan saya:\n1. ${menu.title} ${
+    const message = `Atas Nama:\nPesanan Saya:\n1. ${menu.title} ${
       menu.category !== "Minuman" ? `(Level: ${spicinessLevel})` : ""
     } - Jumlah: 1\n\nTotal Barang: 1\nTotal Harga: ${menu.price}\n\nAlamat:\nNote: Kirimkan juga Sharelok nya`;
     return message;
@@ -59,7 +59,7 @@ const Modal = ({ show, onClose, menu, addToCart }) => {
         animate="visible"
         variants={modalVariants}
         transition={{ duration: 0.3 }}
-        className="bg-white/20 backdrop-blur-md rounded-lg p-6 w-full max-w-md"
+        className="bg-white/20 backdrop-blur-md rounded-lg p-6 w-full max-w-md border"
       >
         {/* Close Button */}
         <button
@@ -106,7 +106,7 @@ const Modal = ({ show, onClose, menu, addToCart }) => {
         )}
 
         {/* Action Buttons */}
-        <div className="flex justify-center items-center mt-8 gap-3 mb-4">
+        <div className="flex justify-center items-center mt-8 gap-3 mb-4 md:mt-4 md:mb-0">
           <Button onClick={handleOrderNow} size="p-2">
             Order
           </Button>

@@ -38,7 +38,7 @@ const Navbar = ({ cartItems = [], removeFromCart, toggleCartModal }) => {
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCOxvrdbUOP745_5x99XUXXYWgmFmRRKtepgeMFmhYuGkzftppBRKD9xBeHn8TYE8RfWU&usqp=CAU"
                 alt="Logo Kedai Seblak YN"
-                className="w-10 h-10 rounded-md"
+                className="w-10 h-10 rounded"
               />
             </figure>
           </Link>
@@ -102,7 +102,7 @@ const Navbar = ({ cartItems = [], removeFromCart, toggleCartModal }) => {
               <Link to="/product">Menu</Link>
             </li>
             <li className="text-lg transition duration-300 ease-in-out hover:text-tertiary">
-              <Link to="/menulist">Daftar Menu</Link>
+              <Link to="/menulist">Menu List</Link>
             </li>
             <li className="text-lg transition duration-300 ease-in-out hover:text-tertiary">
               <Link to="/about">Tentang</Link>
@@ -139,7 +139,7 @@ const Navbar = ({ cartItems = [], removeFromCart, toggleCartModal }) => {
             <Link to="/product">Menu</Link>
           </li>
           <li className="my-2 text-lg font-londrina tracking-widest transition duration-300 ease-in-out hover:text-tertiary">
-            <Link to="/menulist">Daftar Menu</Link>
+            <Link to="/menulist">Menu List</Link>
           </li>
           <li className="my-2 text-lg font-londrina tracking-widest transition duration-300 ease-in-out hover:text-tertiary">
             <Link to="/about">Tentang</Link>
