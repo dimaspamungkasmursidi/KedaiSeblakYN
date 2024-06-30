@@ -14,7 +14,10 @@ const MenuList = () => {
   return (
     <>
     <section className="py-10 mb-6 px-6">
+      <div className="flex flex-col items-center justify-center">
       <Title>Daftar Menu</Title>
+      <p className="text-center">Kami Menyediakan berbagai macam menu, Pesan menu favorit kamu di halaman Menu.</p>
+      </div>
       <motion.div
         ref={section2Ref}
         className="flex flex-col justify-center items-center mt-8 gap-2"
@@ -30,7 +33,7 @@ const MenuList = () => {
               className="bg-black/10 backdrop-blur-xl p-6 rounded-lg shadow-lg"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              transition={{ duration: 0.3, delay: index * 0.2 }}
             >
               <h3 className="text-2xl font-rocksalt tracking-wider mb-4">{category.category}</h3>
               <ul className="space-y-4">

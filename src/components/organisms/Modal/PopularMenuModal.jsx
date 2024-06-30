@@ -10,7 +10,7 @@ const PopularMenuModal = ({ show, onClose, menu }) => {
   return (
     <motion.div
       onClick={onClose}
-      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-1"
+      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-2"
     >
       <motion.div
         onClick={(e) => e.stopPropagation()}
