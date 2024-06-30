@@ -1,45 +1,53 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
 
-const CartModal = ({ show, onClose, cartItems, removeFromCart }) => {
+const CartModal = ({ cartItems, setCartItems, show, onClose, removeFromCart }) => {
   const modalVariants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: { opacity: 1, scale: 1 },
     exit: { opacity: 0, scale: 0.8 },
   };
 
-  // Fungsi untuk menghitung total harga
+  // Function to calculate total price
   const calculateTotalPrice = () => {
     const totalPrice = cartItems.reduce((total, item) => {
-      // Ubah string harga menjadi nilai numerik dengan menghapus "Rp" dan titik
-      const numericPrice = parseFloat(item.price.replace(/[^0-9,-]+/g, '').replace(',', '.'));
+      // Convert price string to numeric value with regex
+      const numericPrice = parseFloat(item.price.replace(/[^0-9,-]+/g, "").replace(",", "."));
       return total + numericPrice * item.quantity;
     }, 0);
 
-    // Menggunakan Intl.NumberFormat untuk mengonversi ke format rupiah
-    return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(totalPrice);
+    // Format total price as Indonesian Rupiah
+    return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(totalPrice);
   };
 
-  const calculateTotalItems = () => {
-    return cartItems.reduce((total, item) => total + item.quantity, 0);
-  };
-
+  // Function to generate WhatsApp message content
   const generateWhatsAppMessage = () => {
     let message = "Pesanan saya:\n";
     cartItems.forEach((item, index) => {
-      message += `${index + 1}. ${item.title} (Kepedasan: ${item.spicinessLevel}) - Jumlah: ${item.quantity}\n`;
+      message += `${index + 1}. ${item.title} (Level: ${item.spicinessLevel}) - Jumlah: ${item.quantity}\n`;
     });
     message += `\nTotal Barang: ${calculateTotalItems()}\nTotal Harga: ${calculateTotalPrice()}`;
     return message;
   };
 
+  // Function to calculate total items
+  const calculateTotalItems = () => {
+    return cartItems.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  // Function to handle Order Now button click
   const handleOrderNow = () => {
     const phoneNumber = "6288297894942";
     const message = generateWhatsAppMessage();
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, "_blank");
   };
+
+  // Effect to update localStorage whenever cartItems changes
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   if (!show) {
     return null;

@@ -1,41 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import Product from './pages/Product.jsx';
 import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';
 import Test from './pages/Test.jsx';
-import Navbar from './components/organisms/Header/Navbar';
-import CartModal from './components/organisms/Modal/CartModal';
+import Navbar from './components/organisms/Header/Navbar.jsx';
+import CartModal from './components/organisms/Modal/CartModal.jsx';
 
-const App = () => {
-  const [cartItems, setCartItems] = useState([]);
+function App() {
+  const [cartItems, setCartItems] = useState(() => {
+    const storedCartItems = localStorage.getItem("cartItems");
+    return storedCartItems ? JSON.parse(storedCartItems) : [];
+  });
   const [showCartModal, setShowCartModal] = useState(false);
 
+  // Load cart items from localStorage on initial render
+  useEffect(() => {
+    const savedCartItems = localStorage.getItem("cartItems");
+    if (savedCartItems) {
+      setCartItems(JSON.parse(savedCartItems));
+    }
+  }, []);
+
+  // Save cart items to localStorage whenever cartItems changes
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
   const addToCart = (item) => {
-    setCartItems((prevItems) => {
-      const existingItem = prevItems.find(
-        (cartItem) => cartItem.id === item.id && cartItem.spicinessLevel === item.spicinessLevel
+    const existingItem = cartItems.find(
+      (cartItem) =>
+        cartItem.id === item.id && cartItem.spicinessLevel === item.spicinessLevel
+    );
+
+    if (existingItem) {
+      const updatedCartItems = cartItems.map((cartItem) =>
+        cartItem.id === item.id && cartItem.spicinessLevel === item.spicinessLevel
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
       );
-
-      if (existingItem) {
-        return prevItems.map((cartItem) =>
-          cartItem.id === item.id && cartItem.spicinessLevel === item.spicinessLevel
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        );
-      }
-
-      return [...prevItems, { ...item, quantity: 1 }];
-    });
+      setCartItems(updatedCartItems);
+    } else {
+      const updatedCartItems = [...cartItems, { ...item, quantity: 1 }];
+      setCartItems(updatedCartItems);
+    }
   };
 
   const removeFromCart = (id, spicinessLevel) => {
-    setCartItems((prevItems) =>
-      prevItems.filter(
-        (cartItem) => !(cartItem.id === id && cartItem.spicinessLevel === spicinessLevel)
-      )
+    const updatedCartItems = cartItems.filter(
+      (cartItem) => !(cartItem.id === id && cartItem.spicinessLevel === spicinessLevel)
     );
+    setCartItems(updatedCartItems);
   };
 
   const toggleCartModal = () => {
@@ -44,7 +60,7 @@ const App = () => {
 
   return (
     <Router>
-      <Navbar cartItems={cartItems} removeFromCart={removeFromCart} toggleCartModal={toggleCartModal} />
+      <Navbar cartItems={cartItems} toggleCartModal={toggleCartModal} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<Product addToCart={addToCart} />} />
@@ -60,6 +76,6 @@ const App = () => {
       />
     </Router>
   );
-};
+}
 
 export default App;

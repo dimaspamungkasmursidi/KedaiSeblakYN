@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { BsCart2 } from "react-icons/bs";
@@ -6,12 +6,28 @@ import CartModal from "../Modal/CartModal";
 
 const Navbar = ({ cartItems = [], removeFromCart, toggleCartModal }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [storedCartItems, setStoredCartItems] = useState([]);
+
+  // Load cart items from localStorage on component mount
+  useEffect(() => {
+    const savedCartItems = localStorage.getItem("cartItems");
+    if (savedCartItems) {
+      setStoredCartItems(JSON.parse(savedCartItems));
+    }
+  }, []);
+
+  // Update storedCartItems when cartItems change
+  useEffect(() => {
+    setStoredCartItems(cartItems);
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+  // Calculate total items from storedCartItems
+  const totalItems = storedCartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <section className="sticky top-0 z-50 backdrop-blur-xl">
